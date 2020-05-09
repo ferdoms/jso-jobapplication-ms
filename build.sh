@@ -13,10 +13,12 @@ fi
 
 # create container from docker file
 echo "Building container"
-sudo docker build -t "jso-backend" ./ > /dev/null
+sudo docker build -t "jso-jobapplication-ms" ./ > /dev/null
 echo "ok"
 
+
+# TODO Add other env
 # run the container created
 echo "Starting container"
-sudo docker run --detach -p 8080:8080 jso-backend > /dev/null
+sudo docker run -e AWS_DYNAMODB_HOST --detach -p 8081:8081 jso-jobapplication-ms > /dev/null
 echo "ok"

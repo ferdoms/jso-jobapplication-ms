@@ -16,12 +16,14 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
+import com.jobseekerorganizer.jobapplicationms.repository.JobApplicationRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Configuration
 @EnableDynamoDBRepositories(basePackages = "com.jobseekerorganizer")
+//@EnableDynamoDBRepositories(mappingContextRef = "dynamoDBMappingContext", basePackageClasses = JobApplicationRepository.class)
 public class DynamoDBConfig {
 	@Value("${amazon.dynamodb.endpoint}")
 	private String amazonDynamoDBEndpoint;

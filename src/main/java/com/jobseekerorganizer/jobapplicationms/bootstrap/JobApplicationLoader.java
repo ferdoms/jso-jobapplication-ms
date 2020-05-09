@@ -11,6 +11,7 @@ import com.jobseekerorganizer.jobapplicationms.repository.JobApplicationReposito
 
 @Component
 public class JobApplicationLoader implements CommandLineRunner {
+	
 	@Autowired
 	private JobApplicationRepository repository;
 	
