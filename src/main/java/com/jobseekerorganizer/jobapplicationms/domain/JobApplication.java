@@ -77,7 +77,4 @@ public class JobApplication {
 		this.status = status;
 	}
 
-	private static class SnapshotFactory {
-
-	}
 }
