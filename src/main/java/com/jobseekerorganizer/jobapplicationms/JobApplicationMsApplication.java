@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,11 +15,15 @@ import org.springframework.context.annotation.Import;
 
 import com.jobseekerorganizer.jobapplicationms.jwt.TokenAuthenticationService;
 import com.jobseekerorganizer.jobapplicationms.config.DynamoDBConfig;
+import com.jobseekerorganizer.jobapplicationms.config.FileStorageProperties;
 
 @Configuration
 @Import({ DynamoDBConfig.class })
 @ComponentScan
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class, RedisAutoConfiguration.class })
+@EnableConfigurationProperties({
+    FileStorageProperties.class
+})
 public class JobApplicationMsApplication extends SpringBootServletInitializer {
 	@Value("${ENC_KEY}")
 	private String encKey;

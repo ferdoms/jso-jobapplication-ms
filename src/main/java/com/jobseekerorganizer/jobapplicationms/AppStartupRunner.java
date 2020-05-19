@@ -10,6 +10,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.model.CreateTableRequest;
 import com.amazonaws.services.dynamodbv2.model.ProvisionedThroughput;
 import com.amazonaws.services.dynamodbv2.util.TableUtils;
+import com.jobseekerorganizer.jobapplicationms.config.FileStorageProperties;
 import com.jobseekerorganizer.jobapplicationms.domain.JobApplication;
 
 @Component
@@ -18,6 +19,12 @@ public class AppStartupRunner implements ApplicationRunner {
 	private AmazonDynamoDB amazonDynamoDB;
 	@Autowired
 	private DynamoDBMapper dynamoDBMapper;
+	
+	private final FileStorageProperties fileStorageProperties;
+	
+	public AppStartupRunner (FileStorageProperties fileStorageProperties){
+	     this.fileStorageProperties = fileStorageProperties;
+   }
 
 
 	@Override
@@ -26,6 +33,9 @@ public class AppStartupRunner implements ApplicationRunner {
 				.withProvisionedThroughput(new ProvisionedThroughput(1L, 1L));
 		TableUtils.createTableIfNotExists(amazonDynamoDB, ctr);
 		TableUtils.waitUntilActive(amazonDynamoDB, ctr.getTableName());
+		
+		String path = fileStorageProperties.getUploadDir();
+		
 
 	}
 

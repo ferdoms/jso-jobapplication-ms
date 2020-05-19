@@ -1,4 +1,4 @@
-package com.jobseekerorganizer.jobapplicationms.web.controller;
+package com.jobseekerorganizer.jobapplicationms.exceptions;
 
 import java.util.ArrayList;
 import java.util.List;
